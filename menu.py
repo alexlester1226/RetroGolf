@@ -35,6 +35,12 @@ class Menu:
         item_font = pg.font.Font(font_path, 35)
         self.fonts.append(item_font)
 
+        # Sounds
+        nextSound = pg.mixer.Sound("assets/sound/effects/next.wav")
+        self.sounds.append(nextSound)
+
+        backSound = pg.mixer.Sound("assets/sound/effects/cancel.mp3")
+        self.sounds.append(backSound)
 
 
     def move(self):
@@ -62,9 +68,9 @@ class Menu:
             self.justPressed[1] = False
 
         if keys[pg.K_x]:
-
             self.game.onMenu = False
             self.game.menu = None
+            self.sounds[0].play()
 
             if self.pos == 0:
                 self.game.course = Course(self.game)

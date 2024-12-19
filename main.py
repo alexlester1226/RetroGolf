@@ -33,21 +33,21 @@ class Game:
         pg.init()
         self.screen = pg.display.set_mode(RES)  # .set_mode(RES, pg.NOFRAME) to remove menu bar
         self.clock = pg.time.Clock()
-
-        self.onMenu = False
-        self.onStartAnimation = True
-        # self.onStartAnimation = False
-        # self.onMenu = True
+        #
+        # self.onMenu = False
+        # self.onStartAnimation = True
+        self.onStartAnimation = False
+        self.onMenu = True
         self.play = False
         self.onShop = False
         self.music = pg.mixer.Sound('assets/sound/mainTheme.mp3')
         self.hole = None
-        self.menu = None
+        # self.menu = None
         # self.menu = Menu(self)
         self.shop = None
 
-        # self.startAnimate = None
-        # self.menu = Menu(self)
+        self.startAnimate = None
+        self.menu = Menu(self)
 
         self.onCourse = False
         self.course = None
@@ -55,7 +55,7 @@ class Game:
         # Create a surface for the fade effect
         self.fade_surface = pg.Surface((320, 480))
         self.fade_surface.fill('black')
-        self.startAnimate = Animate(self)
+        # self.startAnimate = Animate(self)
 
 
 

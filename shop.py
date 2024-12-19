@@ -121,6 +121,7 @@ class Shop:
             self.game.onShop = False
             self.game.shop = None
             self.game.new_menu()
+            self.game.menu.sounds[1].play()
             self.game.fade_out(self.game.screen, self.game.fade_surface, 30)  # Fade out with 30ms delay
             self.game.fade_in(self.game.screen, self.game.fade_surface, 30)  # Fade in with 30ms delay
 

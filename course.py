@@ -24,9 +24,9 @@ class Course:
 
     def get_courses(self):
         x = 34
-        card1 = Card("Beldale", "72", 1, [2000, 500, 250], False)
-        card2 = Card("Tour Championship", "71", 1, [2000, 500, 250], True)
-        card3 = Card("Pebble Beach", "70", 1, [2000, 500, 250], True)
+        card1 = Card("Beldale", "72", 2, [2000, 500, 250], False)
+        card2 = Card("Tour Championship", "71", 4.5, [100000, 50000, 25000], True)
+        card3 = Card("Pebble Beach", "70", 3, [2000, 500, 250], True)
 
         self.cards.append(card1)
         self.cards_x.append(x)
@@ -124,12 +124,11 @@ class Course:
                     self.game.music.stop()
                     self.game.fade_in(self.game.screen, self.game.fade_surface, 30)  # Fade out with 30ms delay
 
-
-
         else:
             self.justPressed[2] = False
 
         if keys[pg.K_z]:
+            self.sounds[0].play()
             self.game.fade_out(self.game.screen, self.game.fade_surface, 30)  # Fade out with 30ms delay
             self.game.onCourse = False
             self.game.course = None

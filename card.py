@@ -1,4 +1,5 @@
 import pygame as pg
+import math
 
 class Card:
     def __init__(self, title, par, difficulty, prize, lock):
@@ -9,8 +10,10 @@ class Card:
         self.lock = lock
         self.img = []
         self.font = []
+        self.show_star = [0, 0, 0, 0, 0]
 
         self.load_images()
+        self.get_show_star()
 
 
     def load_images(self):
@@ -70,13 +73,29 @@ class Card:
         lockImg = pg.transform.scale(lockImg, (20, 20))
         self.img.append(lockImg)
 
+        stars = []
+        for i in range(0, 3):
+            star = pg.image.load(f"assets/Stars/star_{i}.png")
+            star = pg.transform.scale(star, (16, 16))
+            stars.append(star)
+        self.img.append(stars)
+
         # Fonts
         font_path = "assets/Fonts/letters.ttf"
-        title_font = pg.font.Font(font_path, 30)
+        title_font = pg.font.Font(font_path, 15)
         self.font.append(title_font)
 
         item_font = pg.font.Font(font_path, 20)
         self.font.append(item_font)
+
+    def get_show_star(self):
+        for i in range(0, math.floor(self.difficulty)):
+            self.show_star[i] = 1
+
+        halfStar = self.difficulty - math.floor(self.difficulty)
+        if halfStar > 0:
+            self.show_star[math.floor(self.difficulty)] = 0.5
+
 
 
     def draw_card(self, screen, x, y):
@@ -114,6 +133,32 @@ class Card:
         screen.blit(self.img[2][5], (x + 17 + 216, y + 90 - 6))
         screen.blit(self.img[2][6], (x + 17 - 6, y + 90 + 216))
         screen.blit(self.img[2][7], (x + 17 + 216, y + 90 + 216))
+
+        par_label = self.font[0].render(f" Par: {self.par}   Winnings:", False, 'black')
+        prize_label1 = self.font[0].render(f"               1st: {self.prize[0]}", False, 'black')
+        prize_label2 = self.font[0].render(f" Difficulty:   2nd: {self.prize[1]}", False, 'black')
+        prize_label3 = self.font[0].render(f"               3rd: {self.prize[2]}", False, 'black')
+
+
+        screen.blit(par_label, (x + 5, y + 320))
+        screen.blit(prize_label1, (x + 5, y + 335))
+        screen.blit(prize_label2, (x + 5, y + 350))
+        screen.blit(prize_label3, (x + 5, y + 365))
+
+        # screen.blit(self.img[6][0], (x + 5, y + 368))
+
+        star_x = x + 8
+        for i in range(0, 5):
+            if self.show_star[i] == 1:
+                screen.blit(self.img[6][0], (star_x, y + 368))
+            elif self.show_star[i] == 0.5:
+                screen.blit(self.img[6][2], (star_x, y + 368))
+            else:
+                screen.blit(self.img[6][1], (star_x, y + 368))
+
+            star_x += 20
+
+
 
         if self.lock:
             screen.blit(self.img[5], (x + 226, y + 365))
