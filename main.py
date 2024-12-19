@@ -46,7 +46,6 @@ class Game:
         # self.menu = Menu(self)
         self.shop = None
 
-        self.startAnimate = Animate(self)
         # self.startAnimate = None
         # self.menu = Menu(self)
 
@@ -56,6 +55,8 @@ class Game:
         # Create a surface for the fade effect
         self.fade_surface = pg.Surface((320, 480))
         self.fade_surface.fill('black')
+        self.startAnimate = Animate(self)
+
 
 
 

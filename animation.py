@@ -22,9 +22,8 @@ class Animate:
         self.got_reset = False
         self.font = []
         self.snake = True
-        self.snake_pos = [-310, 80]
+        self.snake_pos = [-210, 380]
         self.snake_counters = [0, 0]
-
 
         # Timer setup
         self.start_time = 15 # Set the countdown in seconds
@@ -45,7 +44,7 @@ class Animate:
         for i in range(1, 8):
             snakeImg = pg.image.load(f'assets/Intro/Snake/snake-{i}.tiff')
             snakeImg = pg.transform.rotate(snakeImg, -90)
-            snakeImg = pg.transform.scale(snakeImg, (300, 150))
+            snakeImg = pg.transform.scale(snakeImg, (100, 50))
             snake.append(snakeImg)
         self.img.append(snake)
 
@@ -82,14 +81,10 @@ class Animate:
     def draw(self, screen):
         if self.highlight:
             screen.fill((self.colour[0], self.colour[1], self.colour[2]))
+            screen.blit(self.img[2], (30, 100))
         else:
             screen.fill('white')
             screen.blit(self.img[2], (30, 100))
-            if self.snake_pos[0] > -20:
-                pg.draw.rect(screen, 'white', (self.snake_pos[0] + 50, 100, 300, 95))
-            else:
-                pg.draw.rect(screen, 'white', (30, 100, 260, 95))
-
 
             if self.snake:
                 if self.snake_counters[0] > 6:
@@ -104,7 +99,8 @@ class Animate:
 
                 screen.blit(self.img[1][self.snake_counters[1]], (self.snake_pos[0], self.snake_pos[1]))
 
-                if self.snake_pos[0] > 450:
+
+                if self.snake_pos[0] > 500:
                     self.snake = False
             else:
                 if not self.play:
