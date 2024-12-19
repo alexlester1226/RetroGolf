@@ -1,0 +1,1 @@
+  self.hole = Hole(4, 3, 0, self, "Beldale", "3", 12, 58, 11, 7, clubs)

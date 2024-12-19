@@ -1,0 +1,129 @@
+import pygame as pg
+
+class Card:
+    def __init__(self, title, par, difficulty, prize, lock):
+        self.title = title
+        self.par = par
+        self.difficulty = difficulty
+        self.prize = prize  # An array {1st, 2nd, 3rd}
+        self.lock = lock
+        self.img = []
+        self.font = []
+
+        self.load_images()
+
+
+    def load_images(self):
+        headerImg = pg.image.load("assets/GUI/bar.png")
+        headerImg = pg.transform.scale(headerImg, (232, 48))
+        self.img.append(headerImg)
+
+        bodyImg = pg.image.load("assets/GUI/Window_Body.png")
+        bodyImg = pg.transform.scale(bodyImg, (252, 396))
+        self.img.append(bodyImg)
+
+        outlineImg = []
+
+        outline_top = pg.image.load("assets/GUI/Window_Outline_Top.png")
+        outline_top = pg.transform.scale(outline_top, (36, 6))
+        outline_right = pg.image.load("assets/GUI/Window_Outline_Right.png")
+        outline_right = pg.transform.scale(outline_right, (6, 36))
+        outline_bottom = pg.image.load("assets/GUI/Window_Outline_Bottom.png")
+        outline_bottom = pg.transform.scale(outline_bottom, (36, 6))
+        outline_left = pg.image.load("assets/GUI/Window_Outline_Left.png")
+        outline_left = pg.transform.scale(outline_left, (6, 36))
+
+        outline_top_left = pg.image.load("assets/GUI/Window_Outline_Top_Left.png")
+        outline_top_left = pg.transform.scale(outline_top_left, (6, 6))
+
+        outline_top_right = pg.image.load("assets/GUI/Window_Outline_Top_Right.png")
+        outline_top_right = pg.transform.scale(outline_top_right, (6, 6))
+
+        outline_bottom_left = pg.image.load("assets/GUI/Window_Outline_Bottom_Left.png")
+        outline_bottom_left = pg.transform.scale(outline_bottom_left, (6, 6))
+
+        outline_bottom_right = pg.image.load("assets/GUI/Window_Outline_Bottom_Right.png")
+        outline_bottom_right = pg.transform.scale(outline_bottom_right, (6, 6))
+
+        outlineImg.append(outline_top)
+        outlineImg.append(outline_right)
+        outlineImg.append(outline_bottom)
+        outlineImg.append(outline_left)
+
+        outlineImg.append(outline_top_left)
+        outlineImg.append(outline_top_right)
+        outlineImg.append(outline_bottom_left)
+        outlineImg.append(outline_bottom_right)
+
+        self.img.append(outlineImg)
+
+        course_img = pg.image.load(f"assets/Course-Img/{self.title}.webp")
+        course_img = pg.transform.scale(course_img, (206, 206))
+        self.img.append(course_img)
+
+        bodyImg = pg.transform.scale(bodyImg, (210, 210))
+        self.img.append(bodyImg)
+
+
+        lockImg = pg.image.load(f"assets/lock.png")
+        lockImg = lockImg.convert_alpha()
+        lockImg = pg.transform.scale(lockImg, (20, 20))
+        self.img.append(lockImg)
+
+        # Fonts
+        font_path = "assets/Fonts/letters.ttf"
+        title_font = pg.font.Font(font_path, 30)
+        self.font.append(title_font)
+
+        item_font = pg.font.Font(font_path, 20)
+        self.font.append(item_font)
+
+
+    def draw_card(self, screen, x, y):
+        for i in range(0, 7):
+            screen.blit(self.img[2][0], (x + 36 * i, y - 6))
+            screen.blit(self.img[2][2], (x + 36 * i, y + 396))
+
+        for k in range(0, 11):
+            screen.blit(self.img[2][3], (x - 6, y + 36 * k))
+            screen.blit(self.img[2][1], (x + 252, y + 36 * k))
+
+        screen.blit(self.img[2][4], (x - 6, y - 6))
+        screen.blit(self.img[2][5], (x + 252, y - 6))
+        screen.blit(self.img[2][6], (x - 6, y + 396))
+        screen.blit(self.img[2][7], (x + 252, y + 396))
+
+        screen.blit(self.img[1], (x, y))
+        # pg.draw.rect(screen, (0, 0, 0), (x + 5, y + 5, 242, 48))
+
+        screen.blit(self.img[0], (x + 10, y + 20))
+        title = self.font[1].render(f"{self.title}", False, (0, 0, 0))
+        screen.blit(title, (x + 22, y + 33))
+
+        # screen.blit(self.img[4], (x + 20, y + 85))
+        screen.blit(self.img[3], (x + 17 + 5, y + 90 + 5))
+
+        for i in range(0, 6):
+            screen.blit(self.img[2][0], (x + 17 + 36 * i, y + 90 - 6))
+            screen.blit(self.img[2][2], (x + 17 + 36 * i, y + 90 + 216))
+
+            screen.blit(self.img[2][3], (x + 17 - 6, y + 90 + 36 * i))
+            screen.blit(self.img[2][1], (x + 17 + 216, y + 90 + 36 * i))
+
+        screen.blit(self.img[2][4], (x + 17 - 6, y + 90 - 6))
+        screen.blit(self.img[2][5], (x + 17 + 216, y + 90 - 6))
+        screen.blit(self.img[2][6], (x + 17 - 6, y + 90 + 216))
+        screen.blit(self.img[2][7], (x + 17 + 216, y + 90 + 216))
+
+        if self.lock:
+            screen.blit(self.img[5], (x + 226, y + 365))
+
+
+        # screen.blit(self.img[0], (x + 10, y + 330))
+
+
+
+
+
+
+
