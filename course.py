@@ -18,26 +18,34 @@ class Course:
         startSound = pg.mixer.Sound("assets/sound/effects/buying.wav")
         self.sounds.append(cancelSound)
         self.sounds.append(startSound)
-
-
         self.get_courses()
+
+    def read_golf_courses(self, file_path):
+        # Initialize an empty list to store the 2D array
+        data = []
+
+        # Open the file and read line by line
+        with open(file_path, 'r') as file:
+            for line in file:
+                # Remove any trailing whitespace or newline characters
+                line = line.strip()
+                # Split the line by commas and append it to the data list
+                data.append(line.split(','))
+
+        return data
+
+    def str_to_bool(self, s):
+        return s.lower() == "true"
 
     def get_courses(self):
         x = 34
-        card1 = Card("Beldale", 72, 18, 2, [2000, 500, 250], False)
-        card2 = Card("Tour Championship", 71, 18, 4.5, [100000, 50000, 25000], True)
-        card3 = Card("Pebble Beach", 70, 18, 3, [2000, 500, 250], True)
+        data = self.read_golf_courses("Courses/courses.txt")
+        for i in range(0, len(data)):
+            card = Card(data[i][0], int(data[i][1]), int(data[i][2]), float(data[i][3]), [int(data[i][4]), int(data[i][5]), int(data[i][6])], self.str_to_bool(data[i][7]))
+            self.cards.append(card)
+            self.cards_x.append(x)
+            x += 22 + 258
 
-        self.cards.append(card1)
-        self.cards_x.append(x)
-        x += 22 + 258
-
-        self.cards.append(card2)
-        self.cards_x.append(x)
-        x += 22 + 258
-
-        self.cards.append(card3)
-        self.cards_x.append(x)
 
     # def fade_in(self, screen, fade_surface, duration):
     #     """Fade in the screen."""
