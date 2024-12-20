@@ -116,37 +116,40 @@ class Card:
         screen.blit(self.img[1], (x, y))
         # pg.draw.rect(screen, (0, 0, 0), (x + 5, y + 5, 242, 48))
 
-        screen.blit(self.img[0], (x + 10, y + 20))
+        screen.blit(self.img[0], (x + 10, y + 15))
         title = self.font[1].render(f"{self.title}", False, (0, 0, 0))
-        screen.blit(title, (x + 22, y + 33))
+        screen.blit(title, (x + 22, y + 28))
 
         # screen.blit(self.img[4], (x + 20, y + 85))
-        screen.blit(self.img[3], (x + 17 + 5, y + 90 + 5))
+        screen.blit(self.img[3], (x + 17 + 5, y + 75 + 5))
 
         for i in range(0, 6):
-            screen.blit(self.img[2][0], (x + 17 + 36 * i, y + 90 - 6))
-            screen.blit(self.img[2][2], (x + 17 + 36 * i, y + 90 + 216))
+            screen.blit(self.img[2][0], (x + 17 + 36 * i, y + 75 - 6))
+            screen.blit(self.img[2][2], (x + 17 + 36 * i, y + 75 + 216))
 
-            screen.blit(self.img[2][3], (x + 17 - 6, y + 90 + 36 * i))
-            screen.blit(self.img[2][1], (x + 17 + 216, y + 90 + 36 * i))
+            screen.blit(self.img[2][3], (x + 17 - 6, y + 75 + 36 * i))
+            screen.blit(self.img[2][1], (x + 17 + 216, y + 75 + 36 * i))
 
-        screen.blit(self.img[2][4], (x + 17 - 6, y + 90 - 6))
-        screen.blit(self.img[2][5], (x + 17 + 216, y + 90 - 6))
-        screen.blit(self.img[2][6], (x + 17 - 6, y + 90 + 216))
-        screen.blit(self.img[2][7], (x + 17 + 216, y + 90 + 216))
+        screen.blit(self.img[2][4], (x + 17 - 6, y + 75 - 6))
+        screen.blit(self.img[2][5], (x + 17 + 216, y + 75 - 6))
+        screen.blit(self.img[2][6], (x + 17 - 6, y + 75 + 216))
+        screen.blit(self.img[2][7], (x + 17 + 216, y + 75 + 216))
 
         # par_label = self.font[0].render(f" Par: {self.par} {self.num_holes} Holes  Winnings:", False, 'black')
         par_label = self.font[0].render(f" Par: {self.par}       Winnings:", False, 'black')
+        if self.num_holes < 10:
+            prize_label1 = self.font[0].render(f" {self.num_holes} Holes       1st: {self.prize[0]}", False, 'black')
 
-        prize_label1 = self.font[0].render(f" {self.num_holes} Holes      1st: {self.prize[0]}", False, 'black')
+        else:
+            prize_label1 = self.font[0].render(f" {self.num_holes} Holes      1st: {self.prize[0]}", False, 'black')
         prize_label2 = self.font[0].render(f" Difficulty:   2nd: {self.prize[1]}", False, 'black')
         prize_label3 = self.font[0].render(f"               3rd: {self.prize[2]}", False, 'black')
 
 
-        screen.blit(par_label, (x + 5, y + 320))
-        screen.blit(prize_label1, (x + 5, y + 335))
+        screen.blit(par_label, (x + 5, y + 310))
+        screen.blit(prize_label1, (x + 5, y + 330))
         screen.blit(prize_label2, (x + 5, y + 350))
-        screen.blit(prize_label3, (x + 5, y + 365))
+        screen.blit(prize_label3, (x + 5, y + 370))
 
         # screen.blit(self.img[6][0], (x + 5, y + 368))
 

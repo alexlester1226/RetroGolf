@@ -1,5 +1,5 @@
-Beldale,72,18,1,2000,500,250,False,
-Oak Hollow,27,9,0.5,4000,200,100,False,
+Oak Hollow,27,09,0.5,4000,200,100,False,
+Beldale,72,18,1,2000,500,250,True,
 Sunset Dunes,72,18,2,10000,4500,2500,True,
 Old Course,72,18,3.5,50000,20000,8000,True,
 Pebble Beach,72,18,4,30000,10000,5000,True,
