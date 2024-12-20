@@ -2,9 +2,10 @@ import pygame as pg
 import math
 
 class Card:
-    def __init__(self, title, par, difficulty, prize, lock):
+    def __init__(self, title, par, num_holes, difficulty, prize, lock):
         self.title = title
         self.par = par
+        self.num_holes = num_holes
         self.difficulty = difficulty
         self.prize = prize  # An array {1st, 2nd, 3rd}
         self.lock = lock
@@ -134,8 +135,10 @@ class Card:
         screen.blit(self.img[2][6], (x + 17 - 6, y + 90 + 216))
         screen.blit(self.img[2][7], (x + 17 + 216, y + 90 + 216))
 
-        par_label = self.font[0].render(f" Par: {self.par}   Winnings:", False, 'black')
-        prize_label1 = self.font[0].render(f"               1st: {self.prize[0]}", False, 'black')
+        # par_label = self.font[0].render(f" Par: {self.par} {self.num_holes} Holes  Winnings:", False, 'black')
+        par_label = self.font[0].render(f" Par: {self.par}       Winnings:", False, 'black')
+
+        prize_label1 = self.font[0].render(f" {self.num_holes} Holes      1st: {self.prize[0]}", False, 'black')
         prize_label2 = self.font[0].render(f" Difficulty:   2nd: {self.prize[1]}", False, 'black')
         prize_label3 = self.font[0].render(f"               3rd: {self.prize[2]}", False, 'black')
 
@@ -147,7 +150,7 @@ class Card:
 
         # screen.blit(self.img[6][0], (x + 5, y + 368))
 
-        star_x = x + 8
+        star_x = x + 12
         for i in range(0, 5):
             if self.show_star[i] == 1:
                 screen.blit(self.img[6][0], (star_x, y + 368))

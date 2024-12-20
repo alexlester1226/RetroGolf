@@ -24,9 +24,9 @@ class Course:
 
     def get_courses(self):
         x = 34
-        card1 = Card("Beldale", "72", 2, [2000, 500, 250], False)
-        card2 = Card("Tour Championship", "71", 4.5, [100000, 50000, 25000], True)
-        card3 = Card("Pebble Beach", "70", 3, [2000, 500, 250], True)
+        card1 = Card("Beldale", 72, 18, 2, [2000, 500, 250], False)
+        card2 = Card("Tour Championship", 71, 18, 4.5, [100000, 50000, 25000], True)
+        card3 = Card("Pebble Beach", 70, 18, 3, [2000, 500, 250], True)
 
         self.cards.append(card1)
         self.cards_x.append(x)
