@@ -3,6 +3,7 @@ import sys
 from hole import Hole
 from animation import Animate
 from menu import Menu
+from user import User
 from course import Course
 
 # Game Settings
@@ -45,6 +46,7 @@ class Game:
         self.menu = None
         # self.menu = Menu(self)
         self.shop = None
+        self.user = User()
 
         self.startAnimate = None
         self.menu = Menu(self)
