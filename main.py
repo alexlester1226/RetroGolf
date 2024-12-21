@@ -33,7 +33,7 @@ class Game:
         pg.init()
         self.screen = pg.display.set_mode(RES)  # .set_mode(RES, pg.NOFRAME) to remove menu bar
         self.clock = pg.time.Clock()
-        #
+
         # self.onMenu = False
         # self.onStartAnimation = True
         self.onStartAnimation = False
