@@ -11,18 +11,11 @@ class Shop:
                              [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]],
                              [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]]
         self.justPressed = [False, False, False, False]
-        self.coins = 0
-        self.clubLevels = []
         self.coin_sprite_sheet = pg.image.load('assets/coins.png').convert_alpha()
         self.coinAnimation = [0, 0]
 
-        self.get_saved_info()
         self.get_images_fonts()
 
-
-    def get_saved_info(self):
-        self.clubLevels = [1, 3, 0, 2, 1]
-        self.coins = 234310
 
     def get_images_fonts(self):
         backgroundImg = pg.image.load(f'assets/Menu/background.png')
@@ -129,7 +122,7 @@ class Shop:
     def draw(self, screen):
         screen.blit(self.imgs[0], (0, 0))
         title_label = self.fonts[0].render(f"Shop", False, (0, 0, 0))
-        coin_label = self.fonts[1].render(f"{self.coins}", False, (0, 0, 0))
+        coin_label = self.fonts[1].render(f"{self.game.user.coins}", False, (0, 0, 0))
 
         driver_label = self.fonts[2].render(f"Driver", False, (self.title_colours[0][0], self.title_colours[0][1], self.title_colours[0][2]))
         woods_label = self.fonts[2].render(f"Woods", False, (self.title_colours[1][0], self.title_colours[1][1], self.title_colours[1][2]))
@@ -180,7 +173,6 @@ class Shop:
 
 
 
-
         screen.blit(driver_label, (20, 120))
         screen.blit(woods_label, (20, 170))
         screen.blit(irons_label, (20, 220))
@@ -223,7 +215,7 @@ class Shop:
                 border_radius = 20  # Radius for rounded corners
                 pg.draw.rect(screen, (0, 0, 0), rect, border_radius=border_radius)
 
-                if self.clubLevels[k] > i:
+                if self.game.user.clubs[k] > i:
                     rect = pg.Rect(rect_x + 1, rect_y + 1, 38, 8)  # x, y, width, height
                     pg.draw.rect(screen, (150, 255, 0), rect, border_radius=border_radius)
 
@@ -231,7 +223,5 @@ class Shop:
             rect_y += 50
             rect_x = 110
 
-        rect = pg.Rect(111, 126, 38, 8)  # x, y, width, height
-        border_radius = 20  # Radius for rounded corners
-        pg.draw.rect(screen, (150, 255, 0), rect, border_radius=border_radius)
+
 
