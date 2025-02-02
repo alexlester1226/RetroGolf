@@ -8,7 +8,7 @@ from course import Course
 
 # Game Settings
 RES = WIDTH, HEIGHT = 320, 480
-FPS = 60
+FPS = 30
 
 
 clubs = {
@@ -32,19 +32,19 @@ class Game:
     def __init__(self):
         # Start Pygame window and call new game function
         pg.init()
-        self.screen = pg.display.set_mode(RES, pg.NOFRAME)  # .set_mode(RES, pg.NOFRAME) to remove menu bar
+        self.screen = pg.display.set_mode(RES)  # .set_mode(RES, pg.NOFRAME) to remove menu bar
         self.clock = pg.time.Clock()
 
-        self.onMenu = False
-        self.onStartAnimation = True
-        # self.onStartAnimation = False
-        # self.onMenu = True
+        # self.onMenu = False
+        # self.onStartAnimation = True
+        self.onStartAnimation = False
+        self.onMenu = True
         self.play = False
         self.onShop = False
         self.music = pg.mixer.Sound('assets/sound/mainTheme.mp3')
         self.hole = None
-        self.menu = None
-        # self.menu = Menu(self)
+        # self.menu = None
+        self.menu = Menu(self)
         self.shop = None
         self.user = User()
 
@@ -57,7 +57,7 @@ class Game:
         # Create a surface for the fade effect
         self.fade_surface = pg.Surface((320, 480))
         self.fade_surface.fill('black')
-        self.startAnimate = Animate(self)
+        # self.startAnimate = Animate(self)
 
 
 

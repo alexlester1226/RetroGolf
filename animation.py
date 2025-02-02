@@ -32,7 +32,6 @@ class Animate:
         self.get_images()
 
     def get_images(self):
-
         intro = []
         for i in range(0, 85):
             img = pg.image.load(f'assets/Intro/intro_{i}.png')
@@ -97,10 +96,10 @@ class Animate:
                 self.snake_counters[0] += 1
                 self.snake_pos[0] += 1
 
-                screen.blit(self.img[1][self.snake_counters[1]], (self.snake_pos[0], self.snake_pos[1]))
+                # screen.blit(self.img[1][self.snake_counters[1]], (self.snake_pos[0], self.snake_pos[1]))
 
-
-                if self.snake_pos[0] > 500:
+                # if self.snake_pos[0] > 500:
+                if self.snake_pos[0] > 100:
                     self.snake = False
             else:
                 if not self.play:
@@ -118,7 +117,6 @@ class Animate:
                     if self.counter == 5 and self.pos == 84:
                         self.done = True
                         self.reset_ticks = pg.time.get_ticks()
-
 
                     screen.blit(self.img[0][self.pos], (0, 0))
                     self.counter += 1
